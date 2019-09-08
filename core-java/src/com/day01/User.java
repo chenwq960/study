@@ -20,6 +20,8 @@ public class User {
 
         String username, namdf1, namdf2, namdf3, namdf4, namdf5, namdf6, namdf7, namdf8, namdf9, namdf0, namdf11,
                 namdf12, namdf13, namdf14;
+
+        System.out.println("你需要时刻保持一颗进取的心！！！");
     }
 
 }
