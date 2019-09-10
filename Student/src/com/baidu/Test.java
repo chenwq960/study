@@ -29,14 +29,17 @@ public class Test {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		/*
+		
+	}
+
+}
+
+/*
 （1）创建类Student，有属性姓名name、年龄age、性别gender。（10分）
 （2）在测试类中实例化1个Student对象stu，并且保存对象的姓名为张三、年龄为18、性别为男。（10分）
 （3）将stu对象通过对象序列化存储到磁盘文件(D:/io3/stu.info)。（10分）
 （4）再创建一个测试类，在main方法中通过对象反序列化技术读取二进制文件中的内容，还原stu对象信息，并输出到控制台。（10分）
 （5）适当加入注释。（5分）
-		*/
-		
-	}
 
-}
+
+*/
