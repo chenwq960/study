@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加</h3>
+            </div>
+            <div class="panel-body from-inline">
+                <label>
+                    ID:
+                    <input type="text" v-model="id">
+                </label>
+                <label> 
+                    Name:
+                    <input type="text" v-model="name">
+                </label>
+                <input type="button" value="添加" class="bth bth-primary" v-on:click="add">
+                <label>
+                    搜索关键字
+                    <input type="text" v-model="keyword">
+ 
+                </label>
+            </div>
+
+        </div>
+
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in seach(keyword)" v-bind:key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.time}}</td>
+                    <td>
+                        <a href="" @click.prevent="del(item.id)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+    
+</body>
+<script src="../vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            list:[
+                {id:1,name:"嬴政",time:new Date()},
+                {id:2,name:"赵高",time:new Date()},
+                {id:3,name:"李斯",time:new Date()},
+            ],
+            id:'',
+            name:'',
+            keyword:'',
+        },
+        methods:{
+           
+            add(){
+               // this.list.push({id:this.id,name:this.name,time:new Date()})
+               var car = {id:this.id,name:this.name,time:new Date()}
+               this.list.push(car)
+               this.id = this.name = ''
+            },
+            del(id){
+                //第一种删除的方法
+                // this.list.some((item,i)=>{
+                //     if(item.id == id){
+                //         this.list.splice(i,1)
+                //         return true
+                //     }
+                // })
+
+                //第二种删除的方法
+                var id = this.list.findIndex(item=>{
+                    if(item.id == id){
+                        return true
+                    }
+                })
+                this.list.splice(id,1)
+            },
+            seach(keyword){
+                var arr = []
+                this.list.forEach(item => {
+                    if(item.name.indexOf(keyword) != -1){
+                        arr.push(item)
+                    }
+                })
+                return arr
+            }
+        }
+    })
+</script>
+</html>
