@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加</h3>
+            </div>
+            <div class="panel-body from-inline">
+                <label>
+                    ID:
+                    <input type="text" v-model="id">
+                </label>
+                <label> 
+                    Name:
+                    <input type="text" v-model="name" v-on:keyup.enter="add">
+                </label>
+                <input type="button" value="添加" class="bth bth-primary" v-on:click="add">
+                <label>
+                    搜索关键字
+                    <input type="text" v-model="keyword" v-focus v-color>
+ 
+                </label>
+            </div>
+
+        </div>
+
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in seach(keyword)" v-bind:key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.time | formatch}}</td>
+                    <td>
+                        <a href="" @click.prevent="del(item.id)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="div">
+        <h2 v-weight = "'red'">{{time | formatch}}</h2>
+    </div>
+    
+</body>
+<script src="../vue.js"></script>
+<script type="text/javascript">
+//自定义全局指令
+    Vue.directive('focus',{
+        bind:function(){
+
+        },
+        inserted:function(el){
+            el.focus()
+        },
+        updated:function(){
+
+        }
+    })
+//自定义全局指令
+    Vue.directive('color',{
+        bind:function(el){
+            el.style.color = 'red'
+        }
+    })
+
+
+
+//定义全局过滤器
+    Vue.filter('formatch',function(time){
+       var dt = new Date(time)
+       var y = dt.getFullYear()
+       var m = dt.getMonth()
+       var d = dt.getDay()
+       var h = dt.getHours()
+       var min = dt.getMinutes()
+       var s = dt.getSeconds()
+       return `${y}-${m}-${d}  ${h}:${min}:${s}`
+    })
+//app的vM实例
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            list:[
+                {id:1,name:"嬴政",time:new Date()},
+                {id:2,name:"赵高",time:new Date()},
+                {id:3,name:"李斯",time:new Date()},
+            ],
+            id:'',
+            name:'',
+            keyword:'',
+        },
+        methods:{
+           
+            add(){
+               // this.list.push({id:this.id,name:this.name,time:new Date()})
+               var car = {id:this.id,name:this.name,time:new Date()}
+               this.list.push(car)
+               this.id = this.name = ''
+            },
+            del(id){
+                //第一种删除的方法
+                // this.list.some((item,i)=>{
+                //     if(item.id == id){
+                //         this.list.splice(i,1)
+                //         return true
+                //     }
+                // })
+
+                //第二种删除的方法
+                var id = this.list.findIndex(item=>{
+                    if(item.id == id){
+                        return true
+                    }
+                })
+                this.list.splice(id,1)
+            },
+            seach(keyword){
+                var arr = []
+                this.list.forEach(item => {
+                    if(item.name.indexOf(keyword) != -1){
+                        arr.push(item)
+                    }
+                })
+                return arr
+            }
+        }
+    })
+
+
+
+//div的VM实例
+    var vm2 = new Vue({
+        el:"#div",
+        data:{
+            time:new Date()
+        },
+        filters:{
+            formatch:function(time){
+                var dt = new Date(time)
+                var y = dt.getFullYear()
+                var m = dt.getMonth()
+                var d = dt.getDay()
+                var h = dt.getHours()
+                var min = dt.getMinutes()
+                var s = dt.getSeconds()
+                return `${y}-${m}-${d}  ${h}:${min}:${s}~~~~~`  
+            }
+        },
+        directives:{
+            'weight':{
+                bind:function(el,binding){
+                    el.style.color= binding.value
+                }
+            }
+        }
+    })
+
+
+
+</script>
+</html>
