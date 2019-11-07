@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            font-size: 18px;
+        }
+        .headerbg{
+            width: 90%;
+            height: 50px;
+            background: orange;
+            border-radius: 20px;
+            padding: 30px 30px 50px 0px;
+        }
+        input[type=text]{
+            border-radius: 10px;
+        }
+        input[type=button]{
+            margin-left: 50px;
+            border-radius: 5px;
+        }
+        .left{
+            margin-top:30px;
+            width: 200px;
+            height: 500px;;
+            float: left;
+            margin-right: 20px;
+            background: red;
+            border-radius: 20px;
+        }
+        .left ul{
+            position: relative;
+            top: 20px;
+        }
+        .left ul li{
+            border: 1px dashed white;
+            list-style: none;
+            width: 100px;
+            margin-top:10px;
+            font-size: 14px;
+            transition: all 1s ease;
+        }
+        .left ul li:hover{
+            border-radius:20px;
+            background: green;
+        }
+        .right{
+            float: left;
+            padding-right: 300px;
+            margin-left: 30px;
+            border-radius: 30px;
+            margin-top: 30px;
+            font-size: 16px;
+            /* list-style: none; */
+        }
+        .right li{
+            list-style: none;
+        }
+        .right td{
+            text-align: center;
+            border: 1px solid gray;
+            width: 205px;
+            border-radius: 20px;
+            margin-top: 10px;
+            margin-top: 20px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+        <router-view name="left"></router-view>
+        <router-view name="main"></router-view>
+
+    </div>
+
+
+
+<!-- 头部的组件内容 -->
+    <template id="header">
+        <div class="headerbg">
+            <h1 style="font-size:40px">导航栏内容</h1>
+        </div>
+    </template>
+
+
+    <!-- 左侧的组件内容 -->
+    <template id="leftconten">
+        <div class="left">
+            <ul>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+                <li>01------陈文庆</li>
+            </ul>
+        </div>
+    </template>
+
+    <!-- 右侧的组件内容 -->
+    <template id="main">
+        <div class="right">
+            <div>
+                <label>
+                    ID：
+                    <input type="text" v-model="id">
+                </label>
+                <label>
+                    Name：
+                    <input type="text" v-model="name">
+                </label>
+                <button @click="add()">提交</button>
+
+            </div>
+            <table>
+                <tr>
+                    <th>序列号</th>
+                    <th>姓名</th>
+                    <th>创建时间</th>
+
+                </tr>
+                <tr v-for="item in list" v-bind:key="item.id">
+                    <td> {{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.time | myfilters}}</td>
+                </tr>
+            </table>
+            
+
+        </div>
+
+    </template>
+    
+</body>
+<script src="../vue.js"></script>
+<script src="../v-router.js"></script>
+<script>
+    var header = {
+        template:"#header",
+    }
+    var leftheader = {
+        template:"#leftconten"
+    }
+
+    // min方法的内容
+    var main = {
+        template:"#main",
+        data(){
+           return{
+            list:[
+                {id:1,name:'陈文庆',time:new Date()},
+                {id:2,name:'陈文庆',time:new Date()},
+                {id:3,name:'陈文庆',time:new Date()},
+                {id:4,name:'陈文庆',time:new Date()},
+                {id:5,name:'陈文庆',time:new Date()},
+                {id:6,name:'陈文庆',time:new Date()},
+                {id:7,name:'陈文庆',time:new Date()},
+                {id:8,name:'陈文庆',time:new Date()},
+                {id:9,name:'陈文庆',time:new Date()},
+            ],
+            id:'',
+            name:'',
+           }
+        },
+        methods:{
+            add(){
+                this.list.push({id:this.id,name:this.name,time:new Date()})
+                this.id = this.name = ''
+            }
+        },
+        filters:{
+            myfilters:function(time){
+                var dt = new Date(time)
+                var y = dt.getHours()
+                var m = dt.getMinutes()
+                var d = dt.getSeconds()
+                return `${y}:${m}:${d}`
+            }
+        }
+    }
+
+
+
+    var routerObje = new VueRouter({
+        routes:[
+            {path:'/',components:{
+                "default":header,
+                'left':leftheader,
+                'main':main
+            }}
+        ]
+    })
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            mes:"数据"
+        },
+        router:routerObje
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
