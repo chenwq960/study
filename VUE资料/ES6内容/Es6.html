@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const set = new Set([1, 2, 3, 4, 4]);
+        [...set]//去重的方式
+
+        set.add(5)          //增加元素
+        set.delete(4)       //删除元素
+        const flag = set.has(4)          //判断是否包含本元素
+
+        const array = Array.from(set)   //set集合转换为array数据的类型
+        array.forEach(el => {
+            console.log(el)
+        });
+
+        console.log("-------------------")
+        set.forEach(el=>console.log(el))       //set的遍历方式
+
+
+        let sett = new Set(['red', 'green', 'blue',111]);
+        var arr = [...sett];
+        console.log(arr)
+
+
+        console.log("--------------------")
+
+        const map = new Map([
+            ['name','陈文庆'],
+            ['title','陈文贺'],
+        ])
+        map.set('edition', 6)        // 键是字符串
+        map.set(262, 'standard')     //map中存入值
+
+        const fla =  map.delete("name")
+        console(fla)
+
+</script>
+</html>
