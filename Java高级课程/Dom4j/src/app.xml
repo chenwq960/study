@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root id="1">
+	<province name="天津市" postcode="120000">
+		<city name="区">
+			<area name="和平区" postcode="120101" />
+			<area name="河东区" postcode="120102" />
+			<area name="河西区" postcode="120103" />
+			<area name="南开区" postcode="120104" />
+		</city>
+		<city name="县">
+			<area name="宁河县" postcode="120221" />
+			<area name="静海县" postcode="120223" />
+			<area name="蓟县" postcode="120225" />
+		</city>
+	</province>
+</root>

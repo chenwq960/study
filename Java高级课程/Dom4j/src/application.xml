@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<scan>
+		<path>com.bawei.yjy.controller</path>
+		<path>com.bawei.yjy.dao.impl</path>
+		<path>com.bawei.yjy.serivce.impl</path>
+	</scan>
+</beans>
