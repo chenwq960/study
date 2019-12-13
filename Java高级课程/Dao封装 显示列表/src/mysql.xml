@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqls>
+	<sql id="findsql">
+		select * from users LIMIT 3,2
+	</sql>
+</sqls>
+
