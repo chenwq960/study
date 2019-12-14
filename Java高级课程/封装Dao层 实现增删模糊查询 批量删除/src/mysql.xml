@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqls>
+	<sql id="findsql">
+		select * from message where name1 like concat('%',?,'%')
+	</sql>
+	<sql id="addsql">
+		insert into message values(?,?,null)
+	</sql>
+	<sql  id="delete">
+		delete from message where id in (?)
+	</sql>
+</sqls>

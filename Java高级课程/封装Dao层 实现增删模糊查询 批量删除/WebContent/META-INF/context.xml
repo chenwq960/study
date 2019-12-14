@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Resource
+	name="mysql"
+	auth="Container"
+	type="javax.sql.DataSource"
+	factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+	driverClassName="com.mysql.jdbc.Driver"
+	url="jdbc:mysql:///test"
+	username="root"
+	password="960879872chenwq"
+	minIdle="1"
+	initialSize="10"
+	maxActive="100" 
+	maxWait="5000"
+/>
