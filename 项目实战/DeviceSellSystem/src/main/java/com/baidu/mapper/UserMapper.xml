@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baidu.mapper.UserMapper">
+	<select id="dedepartmentFind" resultType="department">
+		select * from tb_department where is_delete = 0
+		and department_name like CONCAT('%',#{modelname},'%')
+		and CREATE_time &gt;= #{startTime} and create_time &lt;= #{endTime}
+	</select>
+	
+	<select id="departmenthx" resultType="department">
+		select * from tb_department where department_id = #{id}
+	</select>
+	
+	
+	
+	<select id="findRole" resultType="role">
+		select * from tb_role where is_delete = 0
+		and role_name LIKE CONCAT('%',#{modelName},'%')
+		and create_time &gt;= #{startTime} and create_time &lt;= #{endTime}
+		Order By create_time DESC
+	</select>
+	
+	
+</mapper>

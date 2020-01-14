@@ -5,3 +5,21 @@
 
 **/build/
 JavaWeb/library/target/
+*.jar
+*.MF
+*.css
+*.jpg
+*.jfif
+*.jpeg
+三级联动/WebContent/js/jquery-1.8.3.js
+三级联动/WebContent/js/WdatePicker.js
+VUE资料/Day02/02练习.html
+RIA_day12/WebContent/js/jquery-1.8.3.js
+Java高级课程/ajax实现增删/WebContent/js/jquery-1.8.2.min.js
+VUE资料/webpack 练习/package.json
+VUE资料/webpack 练习/dist/bundle.js
+Java高级课程/ZhouKao/bin/com/baidu/Test.class
+Java高级课程/ZhouKao/bin/com/baidu/Person.class
+Java高级课程/ZhouKao/bin/com/baidu/Emp.class
+*.class
+Java高级课程/mybatis批量删除和注解sql/src/mybatis-config.xml,Java高级课程/mybatis批量删除和注解sql/src/com/baidu/mapper/UserMapper.xml,Java高级课程/mybatis批量删除和注解sql/src/com/baidu/mapper/UserMapper.java,Java高级课程/mybatis批量删除和注解sql/src/com/baidu/dto/Student.java,Java高级课程/mybatis批量删除和注解sql/bin/mybatis-config.xml,Java高级课程/mybatis批量删除和注解sql/bin/com/baidu/mapper/UserMapper.xml

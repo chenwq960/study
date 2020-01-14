@@ -1,5 +1,6 @@
 package com.baidu.entity;
 
+
 public class Apple {
 	private String color;
 	private int weight;
