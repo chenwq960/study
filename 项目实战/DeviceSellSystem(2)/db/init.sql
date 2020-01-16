@@ -31,7 +31,7 @@ CREATE TABLE tb_department
 (
 	department_id int NOT NULL AUTO_INCREMENT COMMENT '部门ID',
 	department_name varchar(32) NOT NULL COMMENT '部门名称',
-	create_time datetime DEFAULT NOW(), SYSDATE() NOT NULL COMMENT '创建时间',
+	create_time datetime NOT NULL COMMENT '创建时间',
 	create_user int NOT NULL COMMENT '创建人',
 	update_time datetime COMMENT '修改时间',
 	update_user int COMMENT '修改人',
@@ -51,9 +51,9 @@ CREATE TABLE tb_device
 	device_code varchar(32) NOT NULL COMMENT '设备编号',
 	device_model varchar(32) DEFAULT '' NOT NULL COMMENT '设备型号',
 	create_user int NOT NULL COMMENT '创建人',
-	create_time datetime DEFAULT NOW(), SYSDATE() NOT NULL COMMENT '创建时间',
+	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user int NOT NULL COMMENT '更新人',
-	update_time datetime DEFAULT NOW(), SYSDATE() NOT NULL COMMENT '更新时间',
+	update_time datetime NOT NULL COMMENT '更新时间',
 	is_delete tinyint DEFAULT 0 NOT NULL COMMENT '是否已删除',
 	PRIMARY KEY (device_id),
 	UNIQUE (device_code)
@@ -82,7 +82,7 @@ CREATE TABLE tb_role
 (
 	role_id int NOT NULL AUTO_INCREMENT COMMENT '角色ID',
 	role_name varchar(32) DEFAULT '' NOT NULL COMMENT '角色名称 ',
-	create_time datetime DEFAULT NOW(), SYSDATE() NOT NULL COMMENT '创建时间',
+	create_time datetime NOT NULL COMMENT '创建时间',
 	create_user int NOT NULL COMMENT '创建人',
 	update_time datetime COMMENT '修改时间',
 	update_user int COMMENT '修改人',
@@ -107,9 +107,9 @@ CREATE TABLE tb_sale_device
 	sale_number int DEFAULT 1 NOT NULL COMMENT '销售个数',
 	remark varchar(512) COMMENT '备注',
 	create_user int NOT NULL COMMENT '创建人',
-	create_time datetime DEFAULT NOW(), SYSDATE() NOT NULL COMMENT '创建时间',
+	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user int NOT NULL COMMENT '更新人',
-	update_time datetime DEFAULT NOW(), SYSDATE() NOT NULL COMMENT '更新时间',
+	update_time datetime NOT NULL COMMENT '更新时间',
 	is_delete tinyint DEFAULT 0 NOT NULL COMMENT '是否已删除',
 	PRIMARY KEY (record_id)
 ) COMMENT = '设备销售表';
@@ -127,7 +127,7 @@ CREATE TABLE tb_station
 	longitude decimal(3,12) NOT NULL COMMENT '经度',
 	latitude decimal(3,12) NOT NULL COMMENT '维度',
 	create_user int NOT NULL COMMENT '创建人',
-	create_time datetime DEFAULT NOW(), SYSDATE() NOT NULL COMMENT '创建时间',
+	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user int NOT NULL COMMENT '更新人',
 	update_time datetime NOT NULL COMMENT '更新时间',
 	is_delete tinyint DEFAULT 0 NOT NULL COMMENT '是否已删除',
@@ -168,5 +168,7 @@ CREATE TABLE tb_user
 	PRIMARY KEY (user_id)
 ) COMMENT = '人员表';
 
+
+INSERT INTO `songyz_test`.`tb_user`(`user_id`, `role_id`, `department_id`, `account`, `password`, `user_name`, `real_name`, `sex`, `birthday`, `nation`, `id_card`, `id_card_front`, `id_card_back`, `address`, `create_time`, `create_user`, `update_time`, `update_user`, `is_delete`) VALUES (1, 1, 1, 'admin', '21232F297A57A5A743894A0E4A801FC3', '超级管理员', '超级管理员', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL);
 
 
