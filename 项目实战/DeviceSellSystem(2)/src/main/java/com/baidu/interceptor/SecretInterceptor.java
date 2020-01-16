@@ -23,13 +23,15 @@ public class SecretInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-        // 获取session的作用域的数值
-        if (Objects.isNull(request.getSession().getAttribute("currentUser"))) {
+        // 初始化当前上下文，
+        CurrentContext.init(request);
+
+        // 判断上下文中是否存在登录用户
+        if (Objects.isNull(CurrentContext.getUser())) {
             response.sendRedirect(request.getContextPath() + "/views/user/error.jsp");
             return false;
         }
         else {
-            CurrentContext.init(request);
             return true;
         }
     }

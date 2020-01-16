@@ -8,10 +8,10 @@ import javax.servlet.http.HttpSession;
 import com.baidu.dto.User;
 
 /**
- * 当前线程上下文的状态参数，主要是当前用户身份信息 注意：如果在一个请求处理线程中又开启新的线程，上下文信息将拷贝到新线程中，但在子线程中加入或修改的数据不会复制回父线程
+ * 当前线程上下文的状态参数，主要是当前用户身份信息
  * 
  * @author songyz
- * @createTime 2020-01-16 18:15:04
+ * @createTime 2020-01-16 18:48:58
  */
 public final class CurrentContext {
 
@@ -39,8 +39,22 @@ public final class CurrentContext {
         return getContext();
     }
 
+    public static void setUser(User user) {
+        Context context = getContext();
+        context.user = user;
+    }
+
     public static User getUser() {
         return getContext().user;
+    }
+
+    public static void setSession(HttpSession session) {
+        Context context = getContext();
+        context.session = session;
+    }
+
+    public static HttpSession getSession() {
+        return getContext().session;
     }
 
     public static class Context {
@@ -49,11 +63,10 @@ public final class CurrentContext {
         User user;
 
         void setPath(HttpServletRequest request) {
-
             this.path = request.getRequestURI();
-
             this.session = request.getSession();
             this.user = (User) request.getSession().getAttribute("currentUser");
         }
     }
+
 }
